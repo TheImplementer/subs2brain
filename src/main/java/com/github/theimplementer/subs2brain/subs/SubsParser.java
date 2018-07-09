@@ -13,7 +13,7 @@ import static java.nio.file.Files.readAllLines;
 public class SubsParser {
 
     public Subs parseSubs(ApplicationOptions applicationOptions) {
-        File subsFile = applicationOptions.getSubsFile();
+        File subsFile = new File(applicationOptions.getSubsFile());
         List<String> fileLines = getFileLines(subsFile);
         SubsEntriesIterator subsEntriesIterator = new SubsEntriesIterator(fileLines);
         List<SubsEntry> subsEntries = new LinkedList<>();

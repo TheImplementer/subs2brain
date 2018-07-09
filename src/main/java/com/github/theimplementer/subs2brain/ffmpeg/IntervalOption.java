@@ -9,13 +9,16 @@ public class IntervalOption implements CommandOption {
         return new IntervalOption(position, duration);
     }
 
-    IntervalOption(String position, String duration) {
+    private IntervalOption(String position, String duration) {
         this.position = position;
         this.duration = duration;
     }
 
-    @Override
-    public String get() {
-        return String.format("-ss %s -t %s", position, duration);
+    public String getPosition() {
+        return position;
+    }
+
+    public String getDuration() {
+        return duration;
     }
 }

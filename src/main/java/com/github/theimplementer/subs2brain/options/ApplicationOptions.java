@@ -1,28 +1,32 @@
 package com.github.theimplementer.subs2brain.options;
 
-import java.io.File;
-
 public class ApplicationOptions {
 
-    private final File subsFile;
-    private final File videoFile;
-    private final File outputDirectory;
+    private final String subsFile;
+    private final String videoFile;
+    private final String outputDirectory;
+    private final boolean extractAudio;
 
-    public ApplicationOptions(File subsFile, File videoFile, File outputDirectory) {
+    public ApplicationOptions(String subsFile, String videoFile, String outputDirectory, boolean extractAudio) {
         this.subsFile = subsFile;
         this.videoFile = videoFile;
         this.outputDirectory = outputDirectory;
+        this.extractAudio = extractAudio;
     }
 
-    public File getSubsFile() {
+    public String getSubsFile() {
         return subsFile;
     }
 
-    public File getVideoFile() {
+    public String getVideoFile() {
         return videoFile;
     }
 
-    public File getOutputDirectory() {
+    public String getOutputDirectory() {
         return outputDirectory;
+    }
+
+    public boolean isExtractAudio() {
+        return extractAudio;
     }
 }

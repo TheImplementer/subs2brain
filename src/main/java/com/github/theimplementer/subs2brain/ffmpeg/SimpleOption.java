@@ -1,7 +1,5 @@
 package com.github.theimplementer.subs2brain.ffmpeg;
 
-import static java.lang.String.format;
-
 public class SimpleOption implements CommandOption {
 
     private final String option;
@@ -11,13 +9,17 @@ public class SimpleOption implements CommandOption {
         return new SimpleOption(option, value);
     }
 
-    SimpleOption(String option, String value) {
+    private SimpleOption(String option, String value) {
         this.option = option;
         this.value = value;
     }
 
-    @Override
-    public String get() {
-        return format("%s %s", option, value);
+
+    public String getOption() {
+        return option;
+    }
+
+    public String getValue() {
+        return value;
     }
 }
