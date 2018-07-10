@@ -1,5 +1,10 @@
 package com.github.theimplementer.subs2brain.subs;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
+
 public class SubsTimings {
 
     private final SubsInstant startTime;
@@ -16,5 +21,15 @@ public class SubsTimings {
 
     public SubsInstant getEndTime() {
         return endTime;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return reflectionEquals(this, obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return reflectionHashCode(this);
     }
 }

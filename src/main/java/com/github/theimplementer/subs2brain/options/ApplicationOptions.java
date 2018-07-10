@@ -2,24 +2,24 @@ package com.github.theimplementer.subs2brain.options;
 
 public class ApplicationOptions {
 
-    private final String subsFile;
-    private final String videoFile;
+    private final String subsFileLocation;
+    private final String videoFileLocation;
     private final String outputDirectory;
     private final boolean extractAudio;
 
-    public ApplicationOptions(String subsFile, String videoFile, String outputDirectory, boolean extractAudio) {
-        this.subsFile = subsFile;
-        this.videoFile = videoFile;
+    public ApplicationOptions(String subsFileLocation, String videoFileLocation, String outputDirectory, boolean extractAudio) {
+        this.subsFileLocation = subsFileLocation;
+        this.videoFileLocation = videoFileLocation;
         this.outputDirectory = outputDirectory;
         this.extractAudio = extractAudio;
     }
 
-    public String getSubsFile() {
-        return subsFile;
+    public String getSubsFileLocation() {
+        return subsFileLocation;
     }
 
-    public String getVideoFile() {
-        return videoFile;
+    public String getVideoFileLocation() {
+        return videoFileLocation;
     }
 
     public String getOutputDirectory() {

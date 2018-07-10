@@ -2,8 +2,7 @@ package com.github.theimplementer.subs2brain;
 
 import com.github.theimplementer.subs2brain.options.ApplicationOptions;
 import com.github.theimplementer.subs2brain.options.OptionsParser;
-import com.github.theimplementer.subs2brain.subs.Subs;
-import com.github.theimplementer.subs2brain.subs.SubsParser;
+import com.github.theimplementer.subs2brain.subs.*;
 
 public class Main {
 
@@ -17,10 +16,12 @@ public class Main {
         OptionsParser optionsParser = new OptionsParser();
         ApplicationOptions applicationOptions = optionsParser.parse(args);
 
-
-        SubsParser subsParser = new SubsParser();
-        Subs subs = subsParser.parseSubs(applicationOptions);
-
+        SrtSubsParser srtSubsParser = new SrtSubsParser(new SubsFileReader(), new SrtSubsEntryParser());
+        try {
+            Subs subs = srtSubsParser.parseSubs(applicationOptions);
+        } catch (SubsFileReadException | SubsParseException e) {
+            System.err.println("The specified file cannot be loaded: " + applicationOptions.getSubsFileLocation());
+        }
     }
 
     public static void main(String[] args) {

@@ -3,12 +3,12 @@ package com.github.theimplementer.subs2brain.subs;
 public class SubsEntry {
 
     private final int number;
-    private final SubsTimings subsTimings;
+    private final SubsTimings timings;
     private final String line;
 
-    public SubsEntry(int number, SubsTimings subsTimings, String line) {
+    public SubsEntry(int number, SubsTimings timings, String line) {
         this.number = number;
-        this.subsTimings = subsTimings;
+        this.timings = timings;
         this.line = line;
     }
 
@@ -16,8 +16,8 @@ public class SubsEntry {
         return number;
     }
 
-    public SubsTimings getSubsTimings() {
-        return subsTimings;
+    public SubsTimings getTimings() {
+        return timings;
     }
 
     public String getLine() {
