@@ -1,6 +1,7 @@
 package com.github.theimplementer.subs2brain.subs;
 
 import com.github.theimplementer.subs2brain.options.ApplicationOptions;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -19,10 +20,15 @@ public class SrtSubsParserTest {
 
     private static final String FILE_LOCATION = "file-location.test";
 
-    private final ApplicationOptions options = new ApplicationOptions(FILE_LOCATION, null, null, false);
+    private final ApplicationOptions options = mock(ApplicationOptions.class);
     private final SubsFileReader subsFileReader = mock(SubsFileReader.class);
     private final SrtSubsEntryParser srtSubsEntryParser = mock(SrtSubsEntryParser.class);
     private final SrtSubsParser underTest = new SrtSubsParser(subsFileReader, srtSubsEntryParser);
+
+    @Before
+    public void setUpOptions() {
+        when(options.getSubsFileLocation()).thenReturn(FILE_LOCATION);
+    }
 
     @Test(expected = SubsFileReadException.class)
     public void throwsAnExceptionIfTheSubsFileCannotBeLoaded() throws Exception {

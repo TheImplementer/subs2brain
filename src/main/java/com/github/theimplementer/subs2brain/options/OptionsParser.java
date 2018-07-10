@@ -10,6 +10,7 @@ public class OptionsParser {
             .addOption("s", "subs-file", true, "Subtitles file")
             .addOption("i", "video-file", true, "Video file")
             .addOption("o", "output-directory", true, "Output directory")
+            .addOption("p", "prefix", true, "Prefix for output files")
             .addOption("a", "extract-audio", false, "Extract audio files");
 
     private final CommandLineParser parser = new DefaultParser();
@@ -20,9 +21,10 @@ public class OptionsParser {
             String subsFile = commandLine.getOptionValue("s");
             String videoFile = commandLine.getOptionValue("i");
             String outputDirectory = commandLine.getOptionValue("o");
+            String outputFilesPrefix = commandLine.getOptionValue("p");
             boolean extractAudio = commandLine.hasOption("a");
 
-            return new ApplicationOptions(subsFile, videoFile, outputDirectory, extractAudio);
+            return new ApplicationOptions(subsFile, videoFile, outputDirectory, outputFilesPrefix, extractAudio);
 
         } catch (ParseException e) {
             System.out.println("Error while parsing the command line options: " + e);
