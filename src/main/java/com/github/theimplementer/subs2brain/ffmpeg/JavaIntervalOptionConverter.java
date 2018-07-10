@@ -4,7 +4,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 
-public class JavaIntervalOptionConverterImpl implements JavaCommandOptionConverter {
+public class JavaIntervalOptionConverter implements JavaCommandOptionConverter {
 
     @Override
     public boolean canConvert(CommandOption commandOption) {
