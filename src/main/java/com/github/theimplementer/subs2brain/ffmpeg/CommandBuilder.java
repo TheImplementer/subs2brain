@@ -18,6 +18,12 @@ public class CommandBuilder {
                 .withOutputOption(simpleOption("-map", "a"));
     }
 
+    public CommandBuilder withInputOption(CommandOption commandOption) {
+        this.inputOptions.add(commandOption);
+        return this;
+    }
+
+
     public CommandBuilder withInputFile(String inputFile) {
         this.inputFile = inputFile;
         return this;
