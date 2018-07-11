@@ -15,3 +15,13 @@ Mac OS X:
 ```bash
 brew install ffmpeg
 ```
+
+## Usage
+```
+ -a,--extract-audio            Extract audio files
+ -i,--video-file <arg>         Video file
+ -o,--output-directory <arg>   Output directory
+ -p,--prefix <arg>             Prefix for output files
+ -s,--subs-file <arg>          Subtitles file
+ -ss,--extract-screenshots     Extract screenshots files
+```
