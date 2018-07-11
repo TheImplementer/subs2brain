@@ -1,6 +1,5 @@
 package com.github.theimplementer.subs2brain.output;
 
-import com.github.theimplementer.subs2brain.options.ApplicationOptions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,23 +15,18 @@ import static java.util.Comparator.reverseOrder;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class TsvFileWriterTest {
 
     private static final String PREFIX = "test-output";
 
     private Path tempDirectory;
-
-    private final ApplicationOptions applicationOptions = mock(ApplicationOptions.class);
-    private final TsvFileWriter underTest = new TsvFileWriter(applicationOptions);
+    private TsvFileWriter underTest;
 
     @Before
     public void setUpOptions() throws Exception {
         tempDirectory = createTempDirectory("");
-        when(applicationOptions.getOutputDirectory()).thenReturn(tempDirectory.toAbsolutePath().toString());
-        when(applicationOptions.getOutputFilesPrefix()).thenReturn(PREFIX);
+        underTest = new TsvFileWriter(tempDirectory.toAbsolutePath().toString(), PREFIX);
     }
 
     @After

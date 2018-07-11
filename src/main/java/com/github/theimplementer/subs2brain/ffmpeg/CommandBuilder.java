@@ -17,9 +17,15 @@ public class CommandBuilder {
     private String outputFile;
 
     public static CommandBuilder extractAudioCommand() {
-        return new CommandBuilder(FFMPEG_EXECUTABLE)
+        return command(FFMPEG_EXECUTABLE)
                 .withOutputOption(simpleOption("-q:a", "0"))
                 .withOutputOption(simpleOption("-map", "a"));
+    }
+
+    public static CommandBuilder extractScreenshotCommand() {
+        return command(FFMPEG_EXECUTABLE)
+                .withOutputOption(simpleOption("-vframes", "1"))
+                .withOutputOption(simpleOption("-q:v", "2"));
     }
 
     public static CommandBuilder command(String executable) {

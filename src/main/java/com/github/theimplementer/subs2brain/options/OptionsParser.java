@@ -2,8 +2,6 @@ package com.github.theimplementer.subs2brain.options;
 
 import org.apache.commons.cli.*;
 
-import java.io.File;
-
 public class OptionsParser {
 
     private final Options options = new Options()
@@ -11,7 +9,8 @@ public class OptionsParser {
             .addOption("i", "video-file", true, "Video file")
             .addOption("o", "output-directory", true, "Output directory")
             .addOption("p", "prefix", true, "Prefix for output files")
-            .addOption("a", "extract-audio", false, "Extract audio files");
+            .addOption("a", "extract-audio", false, "Extract audio files")
+            .addOption("ss", "extract-screenshots", false, "Extract screenshots files");
 
     private final CommandLineParser parser = new DefaultParser();
 
@@ -23,8 +22,9 @@ public class OptionsParser {
             String outputDirectory = commandLine.getOptionValue("o");
             String outputFilesPrefix = commandLine.getOptionValue("p");
             boolean extractAudio = commandLine.hasOption("a");
+            boolean extractScreenshots = commandLine.hasOption("ss");
 
-            return new ApplicationOptions(subsFile, videoFile, outputDirectory, outputFilesPrefix, extractAudio);
+            return new ApplicationOptions(subsFile, videoFile, outputDirectory, outputFilesPrefix, extractAudio, extractScreenshots);
 
         } catch (ParseException e) {
             System.out.println("Error while parsing the command line options: " + e);

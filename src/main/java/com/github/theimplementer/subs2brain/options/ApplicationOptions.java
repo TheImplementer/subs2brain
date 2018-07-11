@@ -7,13 +7,21 @@ public class ApplicationOptions {
     private final String outputDirectory;
     private final String outputFilesPrefix;
     private final boolean extractAudio;
+    private final boolean extractScreenshots;
 
-    public ApplicationOptions(String subsFileLocation, String videoFileLocation, String outputDirectory, String outputFilesPrefix, boolean extractAudio) {
+    public ApplicationOptions(
+            String subsFileLocation,
+            String videoFileLocation,
+            String outputDirectory,
+            String outputFilesPrefix,
+            boolean extractAudio,
+            boolean extractScreenshots) {
         this.subsFileLocation = subsFileLocation;
         this.videoFileLocation = videoFileLocation;
         this.outputDirectory = outputDirectory;
         this.outputFilesPrefix = outputFilesPrefix;
         this.extractAudio = extractAudio;
+        this.extractScreenshots = extractScreenshots;
     }
 
     public String getSubsFileLocation() {
@@ -32,7 +40,11 @@ public class ApplicationOptions {
         return outputFilesPrefix;
     }
 
-    public boolean isExtractAudio() {
+    public boolean extractAudio() {
         return extractAudio;
+    }
+
+    public boolean extractScreenshots() {
+        return extractScreenshots;
     }
 }

@@ -1,7 +1,5 @@
 package com.github.theimplementer.subs2brain.output;
 
-import com.github.theimplementer.subs2brain.options.ApplicationOptions;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,10 +14,12 @@ public class TsvFileWriter {
 
     private static final String OUTPUT_FILE_EXTENSION = "tsv";
 
-    private final ApplicationOptions options;
+    private final String outputDirectory;
+    private final String prefix;
 
-    public TsvFileWriter(ApplicationOptions options) {
-        this.options = options;
+    public TsvFileWriter(String outputDirectory, String prefix) {
+        this.outputDirectory = outputDirectory;
+        this.prefix = prefix;
     }
 
     public void write(List<OutputEntry> entries) {
@@ -36,7 +36,7 @@ public class TsvFileWriter {
     }
 
     private Path getOutputFilePath() {
-        return Paths.get(options.getOutputDirectory())
-                .resolve(format("%s.%s", options.getOutputFilesPrefix(), OUTPUT_FILE_EXTENSION));
+        return Paths.get(outputDirectory)
+                .resolve(format("%s.%s", prefix, OUTPUT_FILE_EXTENSION));
     }
 }
