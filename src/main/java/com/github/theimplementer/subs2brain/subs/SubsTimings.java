@@ -1,7 +1,5 @@
 package com.github.theimplementer.subs2brain.subs;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
