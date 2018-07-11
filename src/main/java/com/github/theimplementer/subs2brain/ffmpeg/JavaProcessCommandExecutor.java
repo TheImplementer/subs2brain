@@ -1,12 +1,9 @@
 package com.github.theimplementer.subs2brain.ffmpeg;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class JavaProcessCommandExecutor {
-
-    private static final String FFMPEG_EXECUTABLE_NAME = "ffmpeg";
+public class JavaProcessCommandExecutor implements CommandExecutor {
 
     private final JavaProcessCommandConverter commandConverter;
 
@@ -14,20 +11,19 @@ public class JavaProcessCommandExecutor {
         this.commandConverter = commandConverter;
     }
 
-    public void execute(Command command) {
+    @Override
+    public void execute(Command command) throws ProcessExecutionException {
         List<String> convertedCommand = commandConverter.convert(command);
-        ProcessBuilder processBuilder = getProcessBuildFor(convertedCommand);
+        ProcessBuilder processBuilder = new ProcessBuilder(convertedCommand);
+        run(processBuilder);
+    }
+
+    private void run(ProcessBuilder processBuilder) throws ProcessExecutionException {
         try {
             processBuilder.start();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ProcessExecutionException(e);
         }
     }
 
-    private ProcessBuilder getProcessBuildFor(List<String> command) {
-        List<String> commandList = new ArrayList<>();
-        commandList.add(FFMPEG_EXECUTABLE_NAME);
-        commandList.addAll(command);
-        return new ProcessBuilder(commandList).inheritIO();
-    }
 }

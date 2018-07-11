@@ -16,6 +16,7 @@ public class JavaProcessCommandConverter {
 
     public List<String> convert(Command command) {
         List<String> finalCommand = new ArrayList<>();
+        finalCommand.add(command.getExecutable());
         finalCommand.addAll(convertOptions(command.getInputOptions()));
         finalCommand.addAll(asList("-i", command.getInputFile()));
         finalCommand.addAll(convertOptions(command.getOutputOptions()));
