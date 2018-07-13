@@ -5,7 +5,6 @@ import com.github.theimplementer.subs2brain.ffmpeg.JavaProcessCommandConverter;
 import com.github.theimplementer.subs2brain.ffmpeg.JavaProcessCommandExecutor;
 import com.github.theimplementer.subs2brain.ffmpeg.JavaSimpleOptionConverter;
 import com.github.theimplementer.subs2brain.options.ApplicationOptions;
-import com.github.theimplementer.subs2brain.options.OptionsParser;
 import com.github.theimplementer.subs2brain.output.OutputConverter;
 import com.github.theimplementer.subs2brain.output.OutputEntry;
 import com.github.theimplementer.subs2brain.output.TsvFileWriter;
@@ -19,18 +18,9 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 
-public class Main {
+public class Subs2Brain {
 
-    private final String[] args;
-
-    public Main(String[] args) {
-        this.args = args;
-    }
-
-    public void run() {
-        OptionsParser optionsParser = new OptionsParser();
-        ApplicationOptions applicationOptions = optionsParser.parse(args);
-
+    public void run(ApplicationOptions applicationOptions) {
         SrtSubsParser srtSubsParser = new SrtSubsParser(new SubsFileReader(), new SrtSubsEntryParser());
         TsvFileWriter writer = new TsvFileWriter(applicationOptions.getOutputDirectory(), applicationOptions.getOutputFilesPrefix());
         OutputConverter outputConverter = new OutputConverter();
@@ -77,9 +67,5 @@ public class Main {
             System.err.println("The specified file cannot be loaded: " + applicationOptions.getSubsFileLocation());
             throw new RuntimeException(e);
         }
-    }
-
-    public static void main(String[] args) {
-        new Main(args).run();
     }
 }
