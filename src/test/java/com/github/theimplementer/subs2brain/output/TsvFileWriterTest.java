@@ -39,10 +39,10 @@ public class TsvFileWriterTest {
 
     @Test
     public void writesTheExpectedTsvFileAtTheSpecifiedLocation() throws Exception {
-        underTest.write(singletonList(new OutputEntry("Subs line")));
+        underTest.write(singletonList(new OutputEntry("Subs line", "test.png")));
 
         assertTrue(exists(tempDirectory.resolve(PREFIX + ".tsv")));
-        assertThat(outputLines(), contains("Subs line"));
+        assertThat(outputLines(), contains("<img src=\"test.png\">\tSubs line"));
     }
 
     private List<String> outputLines() {

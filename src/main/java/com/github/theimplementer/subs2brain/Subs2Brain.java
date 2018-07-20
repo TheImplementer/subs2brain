@@ -40,7 +40,7 @@ public class Subs2Brain {
 
         List<ExtractedScreenshot> screenshots = extractScreenshotsIfNeeded(applicationOptions, screenshootExtractor, subs);
 
-        List<OutputEntry> outputEntries = outputConverter.convert(subs);
+        List<OutputEntry> outputEntries = outputConverter.convert(subs, screenshots);
         writer.write(outputEntries);
 
     }
