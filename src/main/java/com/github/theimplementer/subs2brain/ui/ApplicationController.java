@@ -2,8 +2,11 @@ package com.github.theimplementer.subs2brain.ui;
 
 import com.github.theimplementer.subs2brain.Subs2Brain;
 import com.github.theimplementer.subs2brain.options.ApplicationOptions;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
@@ -20,8 +23,10 @@ public class ApplicationController {
     public TextField prefix;
     public CheckBox extractScreenshots;
     public CheckBox extractAudio;
+    public Button convertButton;
 
     public void onConvertButtonAction(ActionEvent actionEvent) {
+        convertButton.setDisable(true);
         ApplicationOptions applicationOptions = new ApplicationOptions(
                 subsFileLocation.getText(),
                 videoFileLocation.getText(),
@@ -30,8 +35,11 @@ public class ApplicationController {
                 extractAudio.isSelected(),
                 extractScreenshots.isSelected()
         );
-        Subs2Brain subs2Brain = new Subs2Brain();
-        subs2Brain.run(applicationOptions);
+        ApplicationService applicationService = new ApplicationService(applicationOptions);
+        applicationService.setOnSucceeded(event -> {
+            convertButton.setDisable(false);
+        });
+        applicationService.start();
     }
 
     public void onSubsFileLocationAction(ActionEvent actionEvent) {
@@ -57,6 +65,27 @@ public class ApplicationController {
         File directory = directoryChooser.showDialog(container.getScene().getWindow());
         if (directory != null) {
             outputDirectory.setText(directory.getAbsolutePath());
+        }
+    }
+
+    private static class ApplicationService extends Service<Void> {
+
+        private final ApplicationOptions applicationOptions;
+
+        private ApplicationService(ApplicationOptions applicationOptions) {
+            this.applicationOptions = applicationOptions;
+        }
+
+        @Override
+        protected Task<Void> createTask() {
+            return new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    Subs2Brain subs2Brain = new Subs2Brain();
+                    subs2Brain.run(applicationOptions);
+                    return null;
+                }
+            };
         }
     }
 }

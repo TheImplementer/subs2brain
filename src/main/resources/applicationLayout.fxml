@@ -44,7 +44,7 @@
     <CheckBox fx:id="extractScreenshots" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
 
-    <Button defaultButton="true" onAction="#onConvertButtonAction" prefHeight="40" prefWidth="100" text="Convert"
+    <Button defaultButton="true" onAction="#onConvertButtonAction" fx:id="convertButton" prefHeight="40" prefWidth="100" text="Convert"
             GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="7"
             GridPane.rowSpan="1" GridPane.valignment="CENTER">
     </Button>
