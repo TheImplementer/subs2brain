@@ -9,7 +9,6 @@ import com.github.theimplementer.subs2brain.subs.SubsInstant;
 import com.github.theimplementer.subs2brain.subs.SubsTimings;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -88,6 +87,7 @@ public class ScreenshootExtractor {
         return extractScreenshotCommand()
                 .withInputOption(simpleOption("-ss", start))
                 .withInputFile(inputVideoLocation)
+                .withOutputOption(simpleOption("-vf", "scale=480:320"))
                 .withOutputFile(outputFileLocation)
                 .build();
     }

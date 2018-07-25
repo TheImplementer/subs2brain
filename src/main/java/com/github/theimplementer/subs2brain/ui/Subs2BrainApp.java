@@ -10,14 +10,11 @@ public class Subs2BrainApp extends Application {
 
     private static final String APPLICATION_LAYOUT_FILE = "/applicationLayout.fxml";
     private static final String TITLE = "Subs2Brain";
-    private static final int WIDTH = 600;
-    private static final int HEIGHT = 280;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = loadApplicationLayout();
 
-        primaryStage.setResizable(false);
         primaryStage.setTitle(TITLE);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
